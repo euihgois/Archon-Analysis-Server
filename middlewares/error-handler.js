@@ -17,6 +17,11 @@ module.exports = function (err, req, res, next) {
         .status(401)
         .json({ message: "Invalid token or user has not logged in" });
       break;
+    case "invalid":
+      res
+        .status(401)
+        .json({ message: "Invalid token or user has not logged in" });
+      break;
     case "forbidden":
       res.status(403).json({ message: "Forbidden access" });
       break;

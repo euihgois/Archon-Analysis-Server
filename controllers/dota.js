@@ -5,8 +5,6 @@ class Controller {
     try {
       const { data } = await axiosDota.get("matches/271145478");
 
-      console.log(data);
-
       res.status(200).json(data);
     } catch (error) {
       next({ statusText: "empty" });

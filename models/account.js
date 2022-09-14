@@ -6,8 +6,17 @@ module.exports = (sequelize, DataTypes) => {
   }
   Account.init(
     {
-      userId: DataTypes.STRING,
-      steamId: DataTypes.STRING,
+      userId: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      steamId: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

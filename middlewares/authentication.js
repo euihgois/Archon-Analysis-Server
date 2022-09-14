@@ -5,9 +5,19 @@ module.exports = {
   async authentication(req, res, next) {
     try {
       const { access_token } = req.headers;
-      const { id } = verifyToken(access_token);
+      const { userId } = verifyToken(access_token);
 
-      await axiosCredential.post("Read", { id });
+      const {
+        data: {
+          account: { id },
+        },
+      } = await axiosCredential.post("Read", { id: userId });
+
+      if (!id) throw { response: { statusText: "invalid" } };
+
+      req.user = {
+        userId,
+      };
 
       next();
     } catch (error) {
