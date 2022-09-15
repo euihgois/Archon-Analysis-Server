@@ -1,6 +1,7 @@
 const { Account } = require("../models");
 
 class Controller {
+  //tidak berfungsi dengan baik karen data dari opendota tidak semuanya ada
   static async addSteamId(req, res, next) {
     try {
       const { steamId = "" } = req.body;

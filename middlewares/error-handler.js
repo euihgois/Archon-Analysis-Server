@@ -9,6 +9,9 @@ module.exports = function (err, req, res, next) {
     case "empty":
       res.status(404).json({ message: "Item(s) not found" });
       break;
+    case "Not Found":
+      res.status(404).json({ message: "Item(s) not found" });
+      break;
     case "Unauthorized":
       res.status(401).json({ message: "Invalid email or password" });
       break;
@@ -36,7 +39,7 @@ module.exports = function (err, req, res, next) {
       break;
     default:
       res.status(500).json({
-        message: "error",
+        message: err,
       });
       break;
   }
