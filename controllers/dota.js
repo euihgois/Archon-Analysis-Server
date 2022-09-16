@@ -16,7 +16,7 @@ class Controller {
 
   static async analysis(req, res, next) {
     try {
-      const { match_id } = req.body;
+      const { match_id } = req.params;
 
       const {
         data: { players },
