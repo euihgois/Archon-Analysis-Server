@@ -24,14 +24,27 @@ class Controller {
 
       const { data: heroes } = await axiosDota.get("Heroes");
 
+      const fetchedHeroes = await Hero.findAll({
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      });
+
+      const imageUrls = fetchedHeroes.map((x) => {
+        return { imageUrl: x.imageUrl, hero_id: x.hero_id };
+      });
+
       const fetches = players.map((player) => {
         const heroName = heroes.filter((hero) => hero.id == player.hero_id)[0]
           .localized_name;
+
+        const imageUrl = imageUrls.filter((x) => player.hero_id == x.hero_id);
+
+        delete player.benchmarks.lhten;
 
         return {
           heroName,
           hero_id: player.hero_id,
           benchmarks: player.benchmarks,
+          imageUrl: imageUrl[0].imageUrl,
         };
       });
 
