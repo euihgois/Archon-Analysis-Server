@@ -38,6 +38,8 @@ class Controller {
 
         const imageUrl = imageUrls.filter((x) => player.hero_id == x.hero_id);
 
+        delete player.benchmarks.lhten;
+
         return {
           heroName,
           hero_id: player.hero_id,
